@@ -1,0 +1,1026 @@
+Date,Rev.,,Change Description,Author
+8/2/2018,1.15,Initial Document,,L. Shah
+10/11/2018,1.16,"Added trusted weight field to Nest Item Request in Table 12, Table 14 Close",,L. Shah
+"",,Bag Request,,
+01/24/2019,1.17,"Adding Container type with the open bag request,",,Team
+"",,Added additional field on open bag,,
+"",,Removed section 5,,
+"",,Clarified wordings,,
+"",,Updated Host Status code,,
+04/04/2019,1.18,Removed Trusted weight from close bag transaction,,Team
+"",,Updated protocol summary,,
+"",,General document clarification / correction,,
+"",,,,
+04/10/2019,1.19,Removed schema from Nesting transaction on page 20.,,Team
+05/02/2019,1.20,Changed Item weight from 3 char to 4 Numeric values,,A.Ahmadi
+09/04/2019,1.21,added schema back to Nesting transaction on page 20.,,A.Ahmadi
+09/04/2019,1.21,Changed Item weight back to 3 char from 4 Numeric value for ‘N” transaction,,A.Ahmadi
+09/05/2019,1.22,Updated date and version number on cover page,,A.Ahmadi
+10/07/2019,1.23,Update section 8.1 Close Bag Request – Updated Container Type description,,L. Shah
+"",,"and example, updated Bag Total Weight description, updated Is End Of Run",,
+"",,description.,,
+"",,Update section 7.1 Nest Item Request – Description for Item Weight updated,,
+"",,and examples updated.,,
+01/28/2022,1.24,Correction of total length of Open Bag Response message (Table 11). Update,,L. Shah
+"",,example for Item Weight in Table 6.,,
+02/07/202,1.25,Formatting updates (updated in 1.25 by Linesh in former version),,L. Ross
+4/27/2022,1.26,Added Request A and Request D (International Open Bag Request and,,L. Ross
+"",,International Close Bag Response),,
+12/27/2023,1.27,Added Nesting Format 2 message. Added Sections 7.3 and 7.4. Added a note,,"I. Ionov,"
+"",,in Section 1.,,L. Shah
+04/16/2024,1.28,Added N82 error code to Section 3.3,,I. Ionov
+04/28/2025,1.29,Added digits 24 to the scan time where applicable (multiple tables); updated,,"L. Shah,"
+"",,"version, file name, and date",,I. Ionov
+Field,Field Name,Type,Position,"# of",Description,RR Required
+Number,,,,Char,,
+1,Request Code,Char,1,1,Initialization,Y
+"",,,,,request code as “b”,
+2,Sequence Number,Numeric,2-5,4,Unique sequence,Y
+"",,,,,number. Values,
+"",,,,,must be numeric,
+"",,,,,and range from,
+"",,,,,"0000 to 9999,",
+"",,,,,leading zeros,
+"",,,,,expected.,
+3,MPE ZIP Code,Char,6-10,5,Optional MPE,N
+"",,,,,"location ZIP Code,",
+"",,,,,blank by default.,
+4,RR ZIP Code,Char,11-15,5,Optional RR server,N
+"",,,,,"location ZIP Code,",
+"",,,,,blank by default.,
+5,MPE Name,Char,16-45,30,MPE name or MPE,Y
+"",,,,,IP address as,
+"",,,,,configured in the,
+"",,,,,RR,
+"",,,,,RR_configuration.i,
+"",,,,,ni file. This must be,
+"",,,,,a unique name on,
+"",,,,,each RR server.,
+6,RR server Name,Char,46-75,30,RR name or RR IP,Y
+"",,,,,address as,
+"",,,,,configured in the,
+"",,,,,RR,
+"",,,,,configuration.ini,
+"",,,,,file. This must be a,
+Field,Field Name,Type,Position,"# of",Description,RR Required
+Number,,,,Char,,
+"",,,,,unique name on the,
+"",,,,,USPS domain.,
+"",,,,,Note: This can also,
+"",,,,,be RR Server,
+"",,,,,hostname,
+"",TOTAL,,75,75,,
+Field,Field Name,Type,Position,"# of",Description,MPE Required
+Number,,,,Char,,
+1,Sequence,Char,1-4,4,Echo of the same,Y
+"",number,,,,message sequence,
+"",,,,,number received,
+"",,,,,in the Initialization,
+"",,,,,request.,
+2,Request Code,Char,5,1,Initialization,Y
+"",,,,,request Code as,
+"",,,,,“b”,
+3,Month and,Char,6-9,4,Current month and,Y
+"",Day,,,,day of RR,
+"",,,,,(MMDD),
+4,Year,Char,10-13,4,Current year of,Y
+"",,,,,RR (YYYY),
+5,Hour and,Char,14-17,4,Current RR time,Y
+"",Minute,,,,in hours and,
+"",,,,,minutes (HHMM),
+6,MPE ID,Char,18-19,2,The MPE ID is the,Y
+"",,,,,two-character,
+"",,,,,"unique identifier,",
+"",,,,,ranging from “01”,
+"",,,,,to “FF” in,
+"",,,,,hexadecimal,
+"",,,,,format. The MPE,
+"",,,,,ID for each MPE,
+"",,,,,connected to RR,
+"",,,,,must be unique.,
+"",Field,,Field Name,Field Name,Type,Type,Position,Position,,of,,Description,Description,MPE Required,MPE Required
+Number,har,,,,,,,,,,,,,,
+7,,MPE Name,PE Name,Char,Char,20-49,20-49,30,0,,PE name or,,Y,Y,
+7,PE IP address as,,,,,,,,,,,,,,
+"",,,,,,,,,,,onfigured in the,,,,
+"",,,,,,,,,,,R,,,,
+"",,,,,,,,,,,onfiguration.ini,,,,
+"",,,,,,,,,,,ile.,,,,
+8,8,Location,ocation,Char,Char,50-52,50-52,3,,,his is the 3-,,Y,Y,
+haracter site code,,,,,,,,,,,,,,,
+here the device,,,,,,,,,,,,,,,
+s located.,,,,,,,,,,,,,,,
+"xample ORD,",,,,,,,,,,,,,,,
+"FK, SFO. If no",,,,,,,,,,,,,,,
+"alue, spaces",,,,,,,,,,,,,,,
+hould be used,,,,,,,,,,,,,,,
+7,
+7,
+MPE Name,PE Name
+Char,Char
+20-49,20-49
+30,0
+Y,Y
+8,8
+Location,ocation
+Char,Char
+50-52,50-52
+3,
+Y,Y
+1,
+"",ield,,Field Name,Field Name,Type,Type,Position,Position,,"# of",,Description,Description,MPE Required,MPE Required
+umber,Char,,,,,,,,,,,,,,
+1,,"Sequencenumber",Sequence,Char,har,1-4,-4,4,4,,Echo of the same,,Y,Y,
+"",,number,message sequence,,,,,,,,,,,,
+"",,,,,,,,,,,number received in,,,,
+"",,,,,,,,,,,the Initialization,,,,
+"",,,,,,,,,,,request.,,,,
+2,,"ResponseCode",Response,Char,har,5,,1,1,,Initialization,,Y,Y,
+"",Code,response code as b,,,,,,,,,,,,,
+"",,,,,Note: Response code,,,,,,,,,,
+"",,,,,will be “B” in the,,,,,,,,,,
+"",,,,,case for error code 00,,,,,,,,,,
+"",,,,,(Invalid request code),,,,,,,,,,
+"",Error Code,umeric,-7,2,Error code:,Y,,,,,,,,,
+00 – Invalid request,,,,,,,,,,,,,,,
+code,,,,,,,,,,,,,,,
+01 – Invalid request,,,,,,,,,,,,,,,
+length,,,,,,,,,,,,,,,
+02 – Invalid sequence,,,,,,,,,,,,,,,
+number,,,,,,,,,,,,,,,
+03 – Invalid MPE,,,,,,,,,,,,,,,
+Name,,,,,,,,,,,,,,,
+04 – Invalid RR,,,,,,,,,,,,,,,
+"Sequencenumber",Sequence
+number,
+Char,har
+1-4,-4
+4,4
+Y,Y
+2,
+"ResponseCode",Response
+Code,
+Char,har
+5,
+1,1
+Y,Y
+Field,Field Name,Type,Position,"# of",Description,MPE Required
+Number,,,,Char,,
+"",TOTAL,,7,7,,
+Field,Field Name,Type,Position,"# of",Description,RR Required
+Number,,,,Char,,
+1.,Request Code,Char,1,1,Host status request code,Y
+"",,,,,as “u”,
+2.,Sequence,Numeric,2-5,4,Sequence number is,Y
+"",Number,,,,equal to the sequence,
+"",,,,,number of previous,
+"",,,,,request plus 1 and ranges,
+"",,,,,from 0000-9999.,
+"",TOTAL,,5,5,,
+Field,Field Name,Type,Position,"# of",Description,MPE Required
+Number,,,,Char,,
+1.,Sequence,Numeric,1-4,4,Echo of the same,Y
+"",Number,,,,message sequence,
+"",,,,,number received in the,
+"",,,,,Host Status request.,
+2.,Response,Char,5,1,Response code as “i”,Y
+"",Code,,,,,
+3.,Status,Numeric,6,1,0 disconnected from,Y
+"",,,,,host.,
+"",,,,,1 connected to host and,
+"",,,,,ready to process 2-9,
+"",,,,,TBD,
+"",TOTAL,,6,6,,
+Field,Field Name,Type,Position,"#of",Description,RR
+Number,,,,char,,Required
+1.,Request Code,Char,1,1,RSO Store request code as,Y
+"",,,,,“s”,
+2.,Message,Numeric,2-5,4,Sequence number is equal to,Y
+"",sequence,,,,the sequence number of,
+"",Number,,,,previous request plus 1 and,
+"",,,,,ranges from 0000-9999.,
+3.,MPE Name,Char,6-37,32,The name of the equipment,Y
+"",,,,,or computer,
+4.,Location,Char,38-40,3,The Mail Handling Facility,Y
+"",,,,,at which the Dispatching,
+"",,,,,equipment is located. This is,
+"",,,,,the 3-character site code,
+"",,,,,(OE) where the device is,
+"",,,,,"located. Example: ORD,",
+"",,,,,"JFK, SFO. If no value,",
+"",,,,,spaces should be used.,
+5.,Item ID 1-5,Char,41-210,170,Item ID as well as Del Con;,N
+"",,,,,left justified; if smaller value,
+"",,,,,than 34; spaces should be,
+"",,,,,used. Multiple (up to 5),
+"",,,,,fixed fields per RSO are,
+"",,,,,provided.,
+Field,Field Name,Type,Position,"#of",Description,RR
+Number,,,,char,,Required
+6.,Item Weight,Numeric,211-,3,The weight granularity is in,Y
+"",,,213,,tenth of pounds. The weight,
+"",,,,,is in pounds; 012 is 01.2,
+"",,,,,Lbs.  If no value; leading,
+"",,,,,zeros should be used.,
+"",,,,,Example:,
+"",,,,,[012] is 01.2 Lbs,
+"",,,,,[005] is 0.5Lbs,
+"",,,,,[000] is 0 Lbs leading spaces,
+"",,,,,should be used,
+"",,,,,[ 12] is 1.2Lbs,
+"",,,,,[  5] is 0.5Lbs,
+"",,,,,[000] is 0Lbs,
+7.,Bin Number,Char,214-,3,Bin number the mail was,Y
+"",,,216,,sorted to. Bin 201 is rejected,
+"",,,,,bin,
+8.,Schema,Char,217-,5,The Schema code that,Y
+"",,,221,,provides the bin number the,
+"",,,,,mail was sorted to,
+9.,Scan Time,Char,222-,12,Date and Time of scan,Y
+"",,,233,,(YYMMDDHH(24)MMSS),
+10.,Destination,Char,234-,2,2-character Destination,Y
+"",Country,,235,,Country code. Example: AU,
+"",,,,,Spaces to be padded if null,
+"",,,,,or N/A.,
+11.,Actual,Char,236-,2,2-character Actual Outcome,Y
+"",Outcome,,237,,code. Shall include the Hold,
+"",,,,,as well as Release outcomes.,
+"",,,,,The below are the Known,
+"",,,,,Hold Outcomes:,
+"",,,,,NL : DNL for EU,
+"",,,,,NQ : Queue until M0 and,
+"",,,,,reprocess for EU,
+"",,,,,UD : Return to Sender –,
+"",,,,,Customer Request,
+"",,,,,H4 : Hold for USPIS,
+"",,,,,H3 : Hold for CBP,
+"",,,,,BD : Return to Sender –,
+"",,,,,Export Compliance,
+"",,,,,H2 : Hold for EC,
+"",,,,,HD : Hold for EC due to,
+"",,,,,missing EC disposition,
+"",,,,,H1 : Hold for EC to process,
+"",,,,,through iPass (missing,
+"",,,,,manifest),
+"",,,,,H5 : Hold for Multiple,
+"",,,,,Dispositions,
+Field,Field Name,Type,Position,"#of",Description,RR
+Number,,,,char,,Required
+"",,,,,H6 : Hold for Duplicate,
+"",,,,,Customs Barcode,
+"",,,,,HL : APBS Item Looping,
+"",,,,,Outcome,
+12.,Destination Zip,Numeric,238-,9,Left Justified & Padded with,Y
+"",,,246,,trailing zeros.,
+"",,,,,If ZZZZZ = 5-digit,
+"",,,,,Destination Zip then pad,
+"",,,,,with trailing zeros.,
+"",,,,,Example: 001270000,
+"",,,,,ZZZZZWWWW = 9-digit,
+"",,,,,Destination Zip.,
+"",,,,,Example: 551161234,
+"",,,,,Send as all zeros if null or,
+"",,,,,N/A,
+"",Total,,246,246,,
+Field,Field Name,Type,Position,"# of",Description,,RR Required
+Number,,,,Char,,,
+1.,Sequence,Numeric,1-4,4,Echo of the same,Y,
+"",Number,,,,message sequence,,
+"",,,,,number received in the,,
+"",,,,,RSO Store request.,,
+2.,Response,Char,5,1,Response code as “s”,Y,
+"",Code,,,,,,
+3.,Acknowledg,Char,6,1,A / N,Y,
+"",ment,,,,,,
+4.,Carriage,Char,7,1,<CR> where <CR> is,Y,
+"",Return,,,,one character,,
+"",,,,,representing Carriage,,
+"",,,,,Return(ASCII 13),,
+Field,Field Name,Type,Position,"# of",Description,RR Required
+Number,,,,Char,,
+"",TOTAL,,7,7,,
+Field,Field Name,Type,"# of",Description,RR
+Number,,,Char,,Required
+1.,Header,Char,1,Open curly bracket “{“ character,Y
+2.,Request Code,Char,1,Open bag request code as “O”,Y
+3.,Sequence,Numeric,4,Sequence number is equal to the sequence,Y
+"",Number,,,number of previous request plus 1 and,
+"",,,,ranges from 0000-9999.,
+4.,MPE Sorter,Char,32,MPE unique name that identifies it.,Y
+"",Name,,,,
+5.,Bin Number,Char,3,Bin number the mail was sorted to. Bin 201,Y
+"",,,,is rejected bin,
+6.,IMTL,Char,24,24-digit barcode in compliance with,Y
+"",,,,ATLAS label printing.  This 24 digit must,
+"",,,,be unique for 90 days (configurable).,
+Field,Field Name,Type,"# of",Description,RR
+Number,,,Char,,Required
+7.,Location,Char,3,This is the 3-character site code; where the,N
+"",,,,"device is located. Example: ORD, JFK,",
+"",,,,IAD; or blank (empty spaces by default).,
+8.,Facility ZIP,Numeric,5,Facility’s ZIP Code,Y
+9.,Label Type,Numeric,1,Label Type.  24th character of the IMTL.,Y
+10.,Service,Numeric,1,"Service standard, 0 through 6",Y
+"",Standard,,,,
+11.,CIN,Char,21,CIN Description.,Y
+"",Description,,,Note: CIN file can be obtained from DTMS,
+"",,,,or TC.,
+12.,Destination,Numeric,5,"3- or 5-digit ZIP, based on depth of sort;",Y
+"",ZIP,,,"example, ‘220‘ or ‘22082’",
+13.,Last Facility,Char,35,Facility name where the mail is processed;,Y
+"",,,,"i.e., ‘Dulles P&DC’.",
+14.,Print NLM,Char,3,Can contain ‘NLM’ (non-linear,N
+"",,,,measurement). Blank (empty spaces by,
+"",,,,default).,
+15.,Destination,Char,21,The destination facility name corresponding,N
+"",Facility Name,,,to destination ZIP. Blank (empty spaces by,
+"",,,,default).,
+16.,Route/Auto,Char,4,Route information. Could contain “AUTO”.,N
+"",,,,Blank (empty spaces by default).,
+17.,Open bag,Numeric,14,Date and time of request.,Y
+"",date and time,,,Format: YYYYMMDDHH(24)MMSS,
+18.,Sort Program,Char,8,Sort program information. Blank (empty,Y
+"",Name,,,spaces by default),
+19.,Operation,Numeric,3,"Operation Number with leading zero i.e.,",Y
+"",Number,,,“093”,
+20.,Container,Char,3,3-digit Container type (such as bag) that is,Y
+"",Type,,,used for the operation.,
+21.,Terminator,Char,1,Close curly bracket “}” character,Y
+"",TOTAL,,193,,
+Field,Field Name,Type,"# of",Description,MPE Required
+Number,,,Char,,
+1.,Header,Char,1,Open curly bracket “{“ character,Y
+2.,Sequence,Numeric,4,Echo of the same message sequence,Y
+"",Number,,,number received in the Open Bag,
+"",,,,request.,
+3.,Response,Char,1,Response code as “O”,Y
+"",Code,,,,
+4.,Acknowledge,Char,1,Value of either “A” (ACK) or “N”,Y
+"",ment,,,(NACK),
+5.,MPE ID,Char,2,The MPE ID corresponding to MPE,Y
+"",,,,name sent in O request. The MPE,
+"",,,,ID is the two-character unique,
+"",,,,"identifier, ranging from “01” to",
+"",,,,“FF” in hexadecimal format. The,
+"",,,,MPE ID for each MPE connected to,
+"",,,,RR must be unique.,
+6.,Bin Number,Char,3,Bin number the mail was sorted to.,Y
+"",,,,Bin 201 is rejected bin,
+7.,EDL,Char,24,Echo of EDL sent in O request,Y
+8.,Error Code,Char,2,01 – Invalid Request Code,Y
+"",,,,02 – Invalid Sequence Number,
+"",,,,03 – Invalid Run Sequence,
+"",,,,Consecutive Start or Stop messages,
+"",,,,received.,
+"",,,,04 – Internal Error,
+"",,,,05 – Invalid Request Length,
+"",,,,06 – Client Not Initialized,
+"",,,,07 – EDL already exists,
+"",,,,08 – Invalid or Missing Header,
+"",,,,09 – Invalid or Missing Terminator,
+"",,,,10 – Invalid or Missing MPE Name,
+"",,,,empty,
+"",,,,11 – Invalid or Missing Bin,
+"",,,,number.,
+"",,,,12 – EDL Length incorrect,
+"",,,,13 – Open bag data and time,
+"",,,,missing or invalid.,
+"",,,,,
+"",,,,If acknowledgement is A (ACK),
+"",,,,"then the value will be empty (i.e.,",
+"",,,,spaces),
+9.,Open bag,Numeric,14,Date and time of response.,Y
+"",response date,,,Format:,
+"",time,,,YYYYMMDDHH(24)MMSS,
+10.,Terminator,Char,1,Close curly bracket “}” character,Y
+"",TOTAL,,53,,
+Field,Field Name,Type,"# of",Description,Required
+Number,,,Char,,
+1.,Header,Char,1,Open curly bracket “{“,Y
+"",,,,character,
+2.,Request Code,Char,1,Nest Item Store request,Y
+"",,,,code as “N”,
+3.,Message,Numeric,4,Sequence number is equal,Y
+"",Sequence,,,to the sequence number of,
+"",number,,,previous request plus 1 and,
+"",,,,ranges from 0000-9999.,
+4.,MPE Name,Char,32,The name of the equipment,Y
+"",,,,or computer,
+5.,Bin Number,Char,3,Bin number the mail was,Y
+"",,,,sorted to. Bin 201 is,
+"",,,,rejected bin,
+6.,Location,Char,3,The Mail Handling Facility,Y
+"",,,,at which the Dispatching,
+"",,,,equipment is located. This,
+"",,,,is the 3-character site code,
+"",,,,(OE) where the device is,
+"",,,,"located. Example: ORD,",
+"",,,,"JFK, SFO. If no value,",
+"",,,,spaces should be used.,
+7.,Item ID 1-5,Char,170,Item ID as well as Del Con;,Y
+"",,,,left justified; if smaller,
+"",,,,value than 34; spaces,
+"",,,,should be used. Multiple,
+"",,,,(up to 5) fixed fields per,
+"",,,,RSO are provided.,
+8.,Item Weight,Numeric,3,The weight granularity is in,Y
+"",,,,tenth of pounds; If no,
+"FieldNumber",ield,Field Name,Field Name,Type,ype,"# ofChar","# of",Description,Description,Required,Required,
+umber,Char,,,,,,,,,,,
+"",,,,,value; leading zeros or,,,,,,,
+"",,,,,,,,,spaces should be used.,,,
+"",,,,,,,,,E.g for leading zeroes,,,
+"",,,,,,,,,should be used:,,,
+"",,,,,,,,,[012] is 01.2 Lbs,,,
+"",,,,,,,,,[005] is 0.5Lbs,,,
+"",,,,,,,,,[000] is 0 Lbs,,,
+"",,,,,,,,,Example for leading spaces,,,
+"",,,,,,,,,should be used,,,
+"",,,,,,,,,[ 12] is 1.2Lbs,,,
+"",,,,,,,,,[  5] is 0.5Lbs,,,
+"",,,,,,,,,[   ] is 0Lbs,,,
+9.,.,Schema,Schema,Char,har,5,5,,The Schema code that,,Y,
+"",,,,,,,,,provides the outcome for,,,
+"",,,,,,,,,the barcode.  If not,,,
+"",,,,,,,,,"available, Schema should",,,
+"",,,,,,,,,be passed as all zeros.,,,
+10.,0.,Destination Zip,Destination Zip,Char,har,9,9,,Left Justified & Padded,,Y,
+"",with trailing zeros.,,,,,,,,,,,
+"",,,,,,,,,,,,
+"",,,,,,,,,If ZZZZZ = 5-digit,,,
+"",,,,,,,,,"Destination Zip, then pad",,,
+"",,,,,,,,,with trailing zeros.,,,
+"",,,,,,,,,Example: 001270000,,,
+"",,,,,,,,,,,,
+"",,,,,,,,,ZZZZZWWWW = 9-digit,,,
+"",,,,,,,,,Destination Zip.,,,
+"",,,,,,,,,Example: 551161234,,,
+"",,,,,,,,,,,,
+"",,,,,,,,,Send as all zeros if null or,,,
+"",,,,,,,,,N/A,,,
+11.,1.,Scan Time,Scan Time,Char,har,12,12,,Date and Time of scan,,Y,
+"",,,,,,,,,(YYMMDDH,(24,MMSS,
+12.,2.,Trusted Weight,Trusted Weight,Char,har,1,1,,Y - Yes,,Y,
+"",,,,,,,,,N - No,,,
+13.,3.,Terminator,Terminator,Char,har,1,1,,Close curly bracket “}”,,Y,
+"",,,,character,,,,,,,,
+"",TOTAL,,245,,,,,,,,,
+9.,.
+Schema,Schema
+Char,har
+5,5
+Y,
+10.,0.
+"",
+Destination Zip,Destination Zip
+Char,har
+9,9
+Y,
+11.,1.
+Scan Time,Scan Time
+Char,har
+12,12
+Y,
+12.,2.
+Trusted Weight,Trusted Weight
+Char,har
+1,1
+Y,
+13.,3.
+Terminator,Terminator
+Char,har
+1,1
+Y,
+Field,Field Name,Type,Max,Description,MPE Required
+Number,,,"# of",,
+"",,,Char,,
+1.,Header,Char,1,Open curly bracket “{“ character,Y
+2.,Sequence,Numeric,4,Echo of the same message sequence,Y
+"",Number,,,number received in the Nest Item,
+"",,,,request. N,
+3.,Response,Char,1,Response code as “N”,Y
+"",Code,,,,
+4.,Acknowledge,Char,1,Value of either “A” (ACK) or “N”,Y
+"",ment,,,(NACK),
+5.,MPE ID,Char,2,The MPE ID corresponding to MPE,Y
+"",,,,name sent in O request. The MPE,
+"",,,,ID is the two-character unique,
+"",,,,"identifier, ranging from “01” to",
+"",,,,“FF” in hexadecimal format. The,
+"",,,,MPE ID for each MPE connected to,
+"",,,,RR must be unique.,
+6.,Bin Number,Char,3,Bin number the mail was sorted to.,Y
+"",,,,Bin 201 is rejected bin,
+7.,Error Code,Char,2,01 – Invalid Request Code,Y
+"",,,,02 – Invalid Sequence Number,
+"",,,,"03 – Invalid Run Sequence,",
+"",,,,Consecutive Start or Stop messages,
+"",,,,received.,
+"",,,,04 – Internal Error,
+"",,,,05 – Invalid Request Length,
+"",,,,06 – Client Not Initialized,
+"",,,,07 – Missing Request Code,
+"",,,,08 – Invalid or Missing Header,
+"",,,,09 – Missing item id and/or item,
+"",,,,weight,
+"",,,,10 – Invalid or Missing Terminator,
+"",,,,,
+"",,,,If acknowledgement is A (ACK),
+"",,,,then the value will be empty (i.e.,
+"",,,,spaces),
+8.,Nest Item,Char,14,Date and time of message.,Y
+"",Response,,,Format:,
+"",data and time,,,YYYYMMDDHH(24)MMSS,
+9.,Terminator,Char,1,Close curly bracket “}” character,Y
+"",TOTAL,,29,,
+Field,Field Name,Type,"# of",Description,Required
+Number,,,Char,,
+1.,Header,Char,1,Open curly bracket “{“,Y
+"",,,,character,
+2.,Request Code,Char,1,Nest Item Store request,Y
+"",,,,code as “N”,
+3.,Message,Numeric,4,Sequence number is equal,Y
+"",Sequence,,,to the sequence number of,
+"",number,,,previous request plus 1 and,
+"",,,,ranges from 0000-9999.,
+4.,MPE Name,Char,32,The name of the equipment,Y
+"",,,,or computer,
+5.,Bin Number,Char,3,Bin number the mail was,Y
+"",,,,sorted to. Bin 201 is,
+"",,,,rejected bin,
+6.,Location,Char,3,The Mail Handling Facility,Y
+"",,,,at which the Dispatching,
+"",,,,equipment is located. This,
+"",,,,is the 3-character site code,
+"",,,,(OE) where the device is,
+"",,,,"located. Example: ORD,",
+"",,,,"JFK, SFO. If no value,",
+"",,,,spaces should be used.,
+7.,Item ID 1-5,Char,170,Item ID as well as Del Con;,Y
+"",,,,left justified; if smaller,
+"",,,,value than 34; spaces,
+"",,,,should be used. Multiple,
+"",,,,(up to 5) fixed fields per,
+"",,,,RSO are provided.,
+8.,Item Weight,Numeric,3,The weight granularity is in,Y
+"",,,,tenth of pounds; If no,
+"",,,,value; leading zeros or,
+"",,,,spaces should be used.,
+"",,,,E.g for leading zeroes,
+"",,,,should be used:,
+"",,,,[012] is 01.2 Lbs,
+Field,Field Name,Type,"# of",Description,Required
+Number,,,Char,,
+"",,,,[005] is 0.5Lbs,
+"",,,,[000] is 0 Lbs,
+"",,,,Example for leading spaces,
+"",,,,should be used,
+"",,,,[ 12] is 1.2Lbs,
+"",,,,[  5] is 0.5Lbs,
+"",,,,[] is 0Lbs,
+9.,Schema,Char,5,The Schema code that,Y
+"",,,,provides the outcome for,
+"",,,,the barcode.  If not,
+"",,,,"available, Schema should",
+"",,,,be passed as all zeros.,
+10.,Destination Zip,Char,9,Left Justified & Padded,Y
+"",,,,with trailing zeros.,
+"",,,,,
+"",,,,If ZZZZZ = 5-digit,
+"",,,,Destination Zip then pad,
+"",,,,with trailing zeros.,
+"",,,,Example: 001270000,
+"",,,,,
+"",,,,ZZZZZWWWW = 9-digit,
+"",,,,Destination Zip.,
+"",,,,Example: 551161234,
+"",,,,,
+"",,,,Send as all zeros if null or,
+"",,,,N/A,
+11.,Scan Time,Char,12,Date and Time of scan,Y
+"",,,,(YYMMDDHH(24)MMSS),
+12.,Trusted Weight,Char,1,Y - Yes,Y
+"",,,,N - No,
+13,Item,Char,16,"LLLxWWWxHHH,VVVV",N
+"",Dimensions and,,,This field can be blank.,
+"",Volume,,,LLL – Length in inches,
+"",,,,WWW – Width in inches,
+"",,,,HHH – Height in inches,
+"",,,,VVVV – Volume in cubic,
+"",,,,inches,
+14,Place Holder,Char,15,To be used in future.,N
+15.,Terminator,Char,1,Close curly bracket “}”,Y
+"",,,,character,
+"",TOTAL,,276,,
+Field,Field Name,Type,Max,Description,MPE Required
+Number,,,"# of",,
+"",,,Char,,
+1.,Header,Char,1,Open curly bracket “{“ character,Y
+2.,Sequence,Numeric,4,Echo of the same message sequence,Y
+"",Number,,,number received in the Nest Item,
+"",,,,request. N,
+3.,Response,Char,1,Response code as “N”,Y
+"",Code,,,,
+4.,Acknowledge,Char,1,Value of either “A” (ACK) or “N”,Y
+"",ment,,,(NACK),
+5.,MPE ID,Char,2,The MPE ID corresponding to MPE,Y
+"",,,,name sent in O request. The MPE,
+"",,,,ID is the two-character unique,
+"",,,,"identifier, ranging from “01” to",
+"",,,,“FF” in hexadecimal format. The,
+"",,,,MPE ID for each MPE connected to,
+"",,,,RR must be unique.,
+6.,Bin Number,Char,3,Bin number the mail was sorted to.,Y
+"",,,,Bin 201 is rejected bin,
+7.,Error Code,Char,2,01 – Invalid Request Code,Y
+"",,,,02 – Invalid Sequence Number,
+"",,,,"03 – Invalid Run Sequence,",
+"",,,,Consecutive Start or Stop messages,
+"",,,,received.,
+"",,,,04 – Internal Error,
+"",,,,05 – Invalid Request Length,
+"",,,,06 – Client Not Initialized,
+"",,,,07 – Missing Request Code,
+"",,,,08 – Invalid or Missing Header,
+"",,,,09 – Missing item id and/or item,
+"",,,,weight,
+"",,,,10 – Invalid or Missing Terminator,
+"",,,,11 – Invalid Item dimensions and,
+"",,,,volume,
+"",,,,If acknowledgement is A (ACK),
+"",,,,then the value will be empty (i.e.,
+"",,,,spaces),
+8.,Nest Item,Char,14,Date and time of message.,Y
+"",Response,,,Format:,
+"",data and time,,,YYYYMMDDHH(24)MMSS,
+9.,Terminator,Char,1,Close curly bracket “}” character,Y
+"",TOTAL,,29,,
+Field,Field Name,Type,Max # of,Description,MPE
+Number,,,Char,,Required
+1.,Header,Char,1,Open curly bracket { character,Y
+2.,Request,Char,1,Open bag request code as “C”,Y
+"",Code,,,,
+3.,Sequence,Numeric,4,Sequence number is equal to the sequence,Y
+"",Number,,,number of previous request plus 1 and,
+"",,,,ranges from 0000-9999.,
+4.,MPE Name,Char,32,MPE unique name that identifies it.,Y
+5.,Bin,Char,3,Bin number the mail was sorted to. Bin 201,Y
+"",Number,,,is rejected bin.,
+6.,EDL,Char,24,24 character receptacle barcode,Y
+7.,Container,Char,3,3 digit character Container type (such as,Y
+"",Type,,,bag) that is used for the operation.,
+"",,,,This can be used to pre-determine the tare,
+"",,,,weight (empty weight of container without,
+"",,,,contents).,
+"",,,,Example: “P1P”,
+8.,Bag Total,Numeric,4,This is the total weight of its contents. (Sum,Y
+"",Weight,,,of all item weights for this EDL should,
+"",,,,match this value). Leading spaces or zeroes,
+"",,,,to be used in case of no value. The weight is,
+"",,,,in pounds (lbs).,
+"",,,,"Example: “0005” is 0.5 lbs, “5” is .5 lbs,",
+"",,,,"“0015” is 1.5 lbs,",
+"",,,,“0215” is 21.5 lbs,
+9.,Close bag,Char,14,Date and time of request.,Y
+"",date and,,,Format: YYYYMMDDHH(24)MMSS,
+"",time,,,,
+10.,Is End Of,Char,1,Flag to indicate if close bag operation is,Y
+"",Run,,,from end of run or not.,
+"",,,,Y – Indicates close bag request is End-Of-,
+"",,,,Run.,
+"",,,,N – Indicates close bag request is not End-,
+"",,,,Of-Run.,
+11.,Bag Item,Char,4,Total number of items nested to the bag.,Y
+"",Count,,,,
+12.,Terminator,Char,1,Close curly bracket “}” character,Y
+"",TOTAL,,92,,
+Field,Field Name,Type,"# of",Description,MPE
+Number,,,Char,,Required
+1.,Header,Char,1,Open curly bracket “{“ character,Y
+2.,Sequence,Numeric,4,Echo of the same message sequence,Y
+"",Number,,,number received in the Close Bag,
+"",,,,request.,
+3.,Response,Char,1,Response code as “C”,Y
+"",Code,,,,
+4.,Acknowledge,Char,1,Value of either “A” (ACK) or “N”,Y
+"",ment,,,(NACK),
+5.,MPE ID,Char,2,The MPE ID corresponding to MPE,Y
+"",,,,name sent in “C” request. The MPE,
+"",,,,ID is the two-character unique,
+"",,,,"identifier, ranging from “01” to",
+"",,,,“FF” in hexadecimal format. The,
+"",,,,MPE ID for each MPE connected to,
+"",,,,RR must be unique.,
+6.,Bin Number,Char,3,Bin number the mail was sorted to.,Y
+"",,,,Bin 201 is rejected bin.,
+7.,EDL,Char,24,Echo of EDL sent in O request,Y
+8.,Error Code,Char,2,01 – Invalid Request Code,Y
+"",,,,02 – Invalid Sequence Number,
+"",,,,03 – Invalid Run Sequence,
+"",,,,Consecutive Start or Stop messages,
+"",,,,received.,
+"",,,,04 – Internal Error,
+"",,,,05 – Invalid Request Length,
+"",,,,06 – Client Not Initialized,
+"",,,,07 – EDL already exists,
+"",,,,08 – Invalid or Missing Header,
+"",,,,09 – Invalid or Missing Terminator,
+"",,,,10 – Invalid or Missing MPE Name,
+"",,,,empty,
+"",,,,11 – Invalid or Missing Bin,
+"",,,,number.,
+"",,,,12 – EDL Length incorrect,
+"",,,,13 – Close bag date and time,
+"",,,,missing or invalid.,
+"",,,,,
+"",,,,If acknowledgement is A (ACK),
+"",,,,then the value will be empty (i.e.,
+"",,,,spaces),
+9.,Close bag,Char,14,Date and time of response.,Y
+"",response date,,,Format:,
+"",time,,,YYYYMMDDHH(24)MMSS,
+10.,Terminator,Char,1,Close curly bracket “}” character,Y
+"",TOTAL,,53,,
+Field,Field Name,Type,Max #,Description,RR
+Number,,,of,,Required
+"",,,Char,,
+1.,Header,Char,1,Open curly bracket { character,Y
+2.,Request Code,Char,1,Open bag request code as “F”,Y
+3.,Sequence,Numeric,4,Sequence number is equal to the sequence,Y
+"",Number,,,number of previous request plus 1 and,
+"",,,,ranges from 0000-9999.,
+4.,MPE Name,Char,32,MPE unique name that identifies it.,Y
+5.,Bin Number,Char,3,Bin number the mail was sorted to. Bin 201,Y
+"",,,,is rejected bin.,
+6.,Percentage,Numeric,2,A numeric value between 1 and 99. Values,Y
+"",Full,,,lower than 10 are prefixed by a 0. For,
+"",,,,"example, 1 is denoted as 01.",
+7.,Bag Almost,Char,14,Date and time of request.,Y
+"",Full message,,,Format: YYYYMMDDHH(24)MMSS,
+"",date and time,,,,
+10.,Terminator,Char,1,Close curly bracket “}” character,Y
+"",TOTAL,,58,,
+Field,Field Name,Type,"# of",Description,MPE Required
+Number,,,Char,,
+1.,Header,Char,1,Open curly bracket “{“ character,Y
+2.,Sequence,Numeric,4,Echo of the same message sequence,Y
+"",Number,,,number received in the Open Bag,
+"",,,,request.,
+3.,Response,Char,1,Response code as “F”,Y
+"",Code,,,,
+4.,Acknowledge,Char,1,Value of either “A” (ACK) or “N”,Y
+"",ment,,,(NACK),
+5.,MPE ID,Char,2,The MPE ID corresponding to MPE,Y
+"",,,,name sent in O request. The MPE,
+"",,,,ID is the two-character unique,
+"",,,,"identifier, ranging from “01” to",
+"",,,,“FF” in hexadecimal format. The,
+"",,,,MPE ID for each MPE connected to,
+"",,,,RR must be unique.,
+6.,Bin Number,Char,3,Bin number the mail was sorted to.,Y
+"",,,,Bin 201 is rejected bin. Echo of,
+"",,,,same value that was received in the,
+"",,,,request to RR.,
+8.,Error Code,Char,2,01 – Invalid Request Code,Y
+"",,,,02 – Invalid Sequence Number,
+"",,,,03 – Invalid Run Sequence,
+"",,,,Consecutive Start or Stop messages,
+"",,,,received.,
+"",,,,04 – Internal Error,
+"",,,,05 – Invalid Request Length,
+"",,,,06 – Client Not Initialized,
+"",,,,07 – Percentage Value Incorrect,
+"",,,,08 – Invalid or Missing Header,
+"",,,,09 – Invalid or Missing Terminator,
+"",,,,10 – Invalid or Missing MPE Name,
+"",,,,empty,
+"",,,,11 – Invalid or Missing Bin,
+"",,,,number.,
+"",,,,12 – Percentage Value Length,
+"",,,,Incorrect,
+"",,,,13 –Date and time missing or,
+"",,,,invalid.,
+"",,,,,
+"",,,,If acknowledgement is A (ACK),
+"",,,,then the value will be empty (i.e.,
+"",,,,spaces),
+Field,Field Name,Type,"# of",Description,MPE Required
+Number,,,Char,,
+9.,Bag Almost,Numeric,14,Date and time of response.,Y
+"",Full response,,,Format:,
+"",date time,,,YYYYMMDDHH(24)MMSS,
+10.,Terminator,Char,1,Close curly bracket “}” character,Y
+"",TOTAL,,29,,
+Field,Field Name,Type,"# of",Description,RR
+Number,,,Char,,Required
+1.,Header,Char,1,Open curly bracket “{“ character,Y
+2.,Request Code,Char,1,Open bag request code as “A”,Y
+3.,Sequence,Numeric,4,Sequence number is equal to the sequence,Y
+"",Number,,,number of previous request plus 1 and,
+"",,,,ranges from 0000-9999.,
+4.,MPE Sorter,Char,32,MPE unique name that identifies it.,Y
+"",Name,,,,
+5.,Bin Number,Char,3,Bin number the mail was sorted to. Bin 201,Y
+"",,,,is rejected bin,
+6.,IMTL,Char,24,24-digit barcode in compliance with,Y
+"",,,,ATLAS label printing.  This 24 digit must,
+"",,,,be unique for 90 days (configurable).,
+7.,Location,Char,3,This is the 3-character site code; where the,N
+"",,,,"device is located. Example: ORD, JFK,",
+"",,,,IAD; or blank (empty spaces by default).,
+8.,Facility ZIP,Numeric,5,Facility’s ZIP Code,Y
+9.,Label Type,Numeric,1,Label Type.  24th character of the IMTL.,Y
+10.,Service,Numeric,1,"Service standard, 0 through 6",Y
+"",Standard,,,,
+11.,CIN,Char,21,CIN Description.,Y
+"",Description,,,Note: CIN file can be obtained from DTMS,
+"",,,,or TC.,
+12.,Destination,Numeric,5,"3- or 5-digit ZIP, based on depth of sort.",Y
+"",ZIP,,,Example: ‘220‘ or ‘22082’,
+13.,Last Facility,Char,35,Facility name where the mail is processed.,Y
+"",,,,Example: ‘Dulles P&DC’.,
+Field,Field Name,Type,"# of",Description,RR
+Number,,,Char,,Required
+14.,Print NLM,Char,3,Can contain ‘NLM’ (non-linear,N
+"",,,,measurement). Blank (empty spaces by,
+"",,,,default).,
+15.,Destination,Char,21,The destination facility name corresponding,N
+"",Facility Name,,,to destination ZIP. Blank (empty spaces by,
+"",,,,default).,
+16.,Route/Auto,Char,4,Route information. Could contain “AUTO”.,N
+"",,,,Blank (empty spaces by default).,
+17.,Open bag,Numeric,14,Date and time of request.,Y
+"",date and time,,,Format: YYYYMMDDHH(24)MMSS,
+18.,Sort Program,Char,8,Sort program information. Blank (empty,Y
+"",Name,,,spaces by default),
+19.,Operation,Numeric,3,Operation Number with leading zero i.e.,Y
+"",Number,,,“093”,
+20.,Container,Char,3,3-digit Container type (such as bag) that is,Y
+"",Type,,,used for the operation.,
+21.,Terminator,Char,1,Close curly bracket “}” character,Y
+"",TOTAL,,193,,
+Field,Field Name,Type,"# of",Description,MPE Required
+Number,,,Char,,
+1.,Header,Char,1,Open curly bracket “{“ character,Y
+2.,Sequence,Numeric,4,Echo of the same message sequence,Y
+"",Number,,,number received in the Open Bag,
+"",,,,request.,
+3.,Response,Char,1,Response code as “A”,Y
+"",Code,,,,
+Field,Field Name,Type,"# of",Description,MPE Required
+Number,,,Char,,
+4.,Acknowledge,Char,1,Value of either “A” (ACK) or “N”,Y
+"",ment,,,(NACK),
+5.,MPE ID,Char,2,The MPE ID corresponding to MPE,Y
+"",,,,name sent in O request. The MPE,
+"",,,,ID is the two-character unique,
+"",,,,"identifier, ranging from “01” to",
+"",,,,“FF” in hexadecimal format. The,
+"",,,,MPE ID for each MPE connected to,
+"",,,,RR must be unique.,
+6.,Bin Number,Char,3,Bin number the mail was sorted to.,Y
+"",,,,Bin 201 is rejected bin,
+7.,EDL,Char,24,Echo of EDL sent in ‘A’ request,Y
+8.,Error Code,Char,2,01 – Invalid Request Code,Y
+"",,,,02 – Invalid Sequence Number,
+"",,,,03 – Invalid Run Sequence,
+"",,,,Consecutive Start or Stop messages,
+"",,,,received.,
+"",,,,04 – Internal Error,
+"",,,,05 – Invalid Request Length,
+"",,,,06 – Client Not Initialized,
+"",,,,07 – EDL already exists,
+"",,,,08 – Invalid or Missing Header,
+"",,,,09 – Invalid or Missing Terminator,
+"",,,,10 – Invalid or Missing MPE Name,
+"",,,,empty,
+"",,,,11 – Invalid or Missing Bin,
+"",,,,number.,
+"",,,,12 – EDL Length incorrect,
+"",,,,13 – Open bag data and time,
+"",,,,missing or invalid.,
+"",,,,,
+"",,,,"If acknowledgement is A (ACK),",
+"",,,,then the value will be empty (i.e.,
+"",,,,spaces).,
+9.,Open bag,Numeric,14,Date and time of response.,Y
+"",response date,,,Format:,
+"",time,,,YYYYMMDDHH(24)MMSS,
+10.,Terminator,Char,1,Close curly bracket “}” character,Y
+"",TOTAL,,53,,
+3.,3.
+"SequenceNumber",equence
+umber,
+Numeric,umeric
+4,
+Y,Y
+5.,5.
+"FieldNumber",Field,Field Name,Field Name,Type,Type,,ax #,,Description,Description,,MPE,,,,,
+"",Number,f,Requi,,,,,,,,,,,,,,
+"",,,,,,,,,har,red,,,,,,,
+"",1.,,,eader,,,har,,,,,,Open curly bracket “{“ character,,,Y,
+"",2.,,,equest Code,,,har,,,,,,Open bag request code as “D”,,,Y,
+3.,3.,"SequenceNumber",equence,Numeric,umeric,4,,,Sequence number is equal to the sequence,,Y,Y,,,,,
+"",,,,umber,number of previous request plus 1 and,,,,,,,,,,,,
+"",,,,,,,,,,,,,ranges from 0000-9999.,,,,
+"",4.,,,PE Name,,,har,,,2,,,MPE unique name that identifies it.,,,Y,
+5.,5.,Bin Number,in Number,Char,har,3,,,Bin number the mail was sorted to. Bin 201,,Y,Y,,,,,
+"",,,,,,,,,,,,,is rejected bin.,,,,
+"","6,",,,DL,,,har,,,4,,,24 character receptacle barcode,,,Y,
+7.,7.,"ContainerType",ontainer,Char,har,3,,,3 digit character Container type (such as,,Y,Y,,,,,
+"",,,,ype,bag) that is used for the operation.,,,,,,,,,,,,
+"",,,,,,,,,,,,,This can be used to pre-determine the tare,,,,
+"",,,,,,,,,,,,,weight (empty weight of container without,,,,
+"",,,,,,,,,,,,,contents).,,,,
+"",,,,,,,,,,,,,E.g.: “P1P”,,,,
+8.,8.,,ag Total,,Numeric,umeric,4,,,Piece weight in LBS,,Y,Y,,,,
+"",,,,eight,"""0134"" = 13.4” lbs.",,,,,,,,,,,,
+10.,10.,,lose bag,,Char,har,14,4,,Date and time of request.,,Y,Y,,,,
+"",,,,ate and time,Format: YYYYMMDDHH(24)MMSS,,,,,,,,,,,,
+11.,11.,"Is End OfRun",s End Of,Char,har,1,,,Flag to indicate if close bag operation is,,Y,Y,,,,,
+"",,,,un,from end of run or not.,,,,,,,,,,,,
+"",,,,,,,,,,,,,Y – Indicates close bag request is End-Of-,,,,
+"",,,,,,,,,,,,,Run.,,,,
+"",,,,,,,,,,,,,N – Indicates close bag request is not End-,,,,
+"",,,,,,,,,,,,,Of-Run.,,,,
+12.,12.,,ag Item,,Char,har,4,,Total number of items nested to the bag.,Total number of items nested to the bag.,Y,Y,,,,,
+"",,,,ount,,,,,,,,,,,,,
+"",23.,,,erminator,,,har,,,,,,Close curly bracket “}” character,,,Y,
+Bin Number,in Number
+Char,har
+3,
+Y,Y
+7.,7.
+"ContainerType",ontainer
+ype,
+Char,har
+3,
+Y,Y
+8.,8.
+Numeric,umeric
+4,
+Y,Y
+10.,10.
+Char,har
+14,4
+Y,Y
+11.,11.
+"Is End OfRun",s End Of
+un,
+Char,har
+1,
+Y,Y
+12.,12.
+Char,har
+4,
+Total number of items nested to the bag.,Total number of items nested to the bag.
+Y,Y
+"",Field,,Field Name,Field Name,Type,Type,,"# of",,Description,Description,MPE Required,MPE Required,,,,
+"",Number,Char,,,,,,,,,,,,,,,
+"",1.,,,Header,,,Char,,,1,,,Open curly bracket “{“ character,,,Y,
+Field,Field Name,Type,"# of",Description,MPE Required
+Number,,,Char,,
+2.,Sequence,Numeric,4,Echo of the same message sequence,Y
+"",Number,,,number received in the Close Bag,
+"",,,,request.,
+3.,Response,Char,1,Response code as “D”,Y
+"",Code,,,,
+4.,Acknowledge,Char,1,Value of either “A” (ACK) or “N”,Y
+"",ment,,,(NACK),
+5.,MPE ID,Char,2,The MPE ID corresponding to MPE,Y
+"",,,,name sent in “C” request. The MPE,
+"",,,,ID is the two-character unique,
+"",,,,"identifier, ranging from “01” to",
+"",,,,“FF” in hexadecimal format. The,
+"",,,,MPE ID for each MPE connected to,
+"",,,,RR must be unique.,
+6.,Bin Number,Char,3,Bin number the mail was sorted to.,Y
+"",,,,Bin 201 is rejected bin.,
+7.,EDL,Char,24,Echo of EDL sent in’D’ request,Y
+8.,Error Code,Char,2,01 – Invalid Request Code,Y
+"",,,,02 – Invalid Sequence Number,
+"",,,,03 – Invalid Run Sequence,
+"",,,,Consecutive Start or Stop messages,
+"",,,,received.,
+"",,,,04 – Internal Error,
+"",,,,05 – Invalid Request Length,
+"",,,,06 – Client Not Initialized,
+"",,,,07 – EDL already exists,
+"",,,,08 – Invalid or Missing Header,
+"",,,,09 – Invalid or Missing Terminator,
+"",,,,10 – Invalid or Missing MPE Name,
+"",,,,empty,
+"",,,,11 – Invalid or Missing Bin,
+"",,,,number.,
+"",,,,12 – EDL Length incorrect,
+"",,,,13 – Close bag date and time,
+"",,,,missing or invalid.,
+"",,,,,
+"",,,,If acknowledgement is A (ACK),
+"",,,,then the value will be empty (i.e.,
+"",,,,spaces),
+9.,Close bag,Char,14,Date and time of response.,Y
+"",response date,,,Format:,
+"",time,,,YYYYMMDDHH(24)MMSS,
+10.,Terminator,Char,1,Close curly bracket “}” character,Y
+"",TOTAL,,53,,
